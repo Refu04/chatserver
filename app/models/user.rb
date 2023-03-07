@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :room_users
+    has_many :rooms, through: :room_users
     before_save { self.email = email.downcase }
     validates :name,  presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
