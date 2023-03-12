@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+// 認証サービス
+service Auth {
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponce) {}
+    rpc Login(LoginRequest) returns (LoginResponse) {}
+    rpc Logout(LogoutRequest) returns (LogoutResponse) {}
+    rpc ChangeName(ChangeNameRequest) returns (ChangeNameResponce) {}
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+// ユーザー登録
+message CreateUserRequest{
+    string email = 1;
+    string password = 2;
+}
+
+message CreateUserResponce{
+    bool success = 1;
+    string message = 2;
+    User user = 3;
+}
+
+// 名前変更
+message ChangeNameRequest{
+    int64 id = 1;
+    string name = 2;
+}
+
+message ChangeNameResponce{
+    bool success = 1;
+    string message = 2;
+    User user = 3;
+}
+
+// ログイン
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    bool success = 1;
+    string message = 2;
+    User user = 3;
+}
+
+// ログアウト
+message LogoutRequest {
+    User user = 1;
+}
+
+message LogoutResponse {}

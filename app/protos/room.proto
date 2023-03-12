@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "protos/chat.proto";
+
+// ルームの作成・参加サービス
+service Room {
+  rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse) {}
+  rpc JoinRoom(JoinRoomRequest) returns (JoinRoomResponse) {}
+}
+
+message RoomInfo{
+    int64 id = 1;
+    string name = 2;
+    repeated int64 user_ids = 3;
+    repeated Message messages = 4;
+}
+
+message CreateRoomRequest {
+    string name = 1;
+    int64 user_id = 2;
+}
+
+message CreateRoomResponse {
+    bool success = 1;
+    string message = 2;
+    RoomInfo room = 3;
+}
+
+message JoinRoomRequest {
+    int64 room_id = 1;
+    int64 user_id = 2;
+}
+
+message JoinRoomResponse {
+    RoomInfo room = 1;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "protos/room.proto";
+
+// ルームの検索サービス
+service Search {
+    rpc SearchRooms(SearchRoomsRequest) returns (SearchRoomsResponce) {}
+}
+
+message SearchRoomsRequest {
+    string name = 1;
+}
+
+message SearchRoomsResponce {
+    repeated RoomInfo rooms = 1;
+}

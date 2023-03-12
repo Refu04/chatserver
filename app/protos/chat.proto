@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// チャットサービス
+service Chat {
+    rpc SendMessage(Message) returns (stream Message) {}
+    rpc ReceiveMessage(ReceiveMessageRequest) returns (Message){}
+}
+
+message Message {
+    int64 id = 1;
+    int64 room_id = 2;
+    int64 user_id = 3;
+    string content = 4;
+}
+
+message ReceiveMessageRequest {
+    int64 room_id = 1;
+    int64 user_id = 2;
+}
